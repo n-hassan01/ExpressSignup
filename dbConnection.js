@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const { Pool } = require('pg');
 
 const pool = new Pool({

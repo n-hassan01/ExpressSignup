@@ -9,9 +9,9 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const schema = Joi.object({
         name: Joi.string(),
-        userName: Joi.string().required(),
+        username: Joi.string().required(),
         password: Joi.string().min(6).required(),
-        userRole: Joi.required(),
+        role: Joi.required(),
     });
     const validation = schema.validate(req.body);
 
@@ -24,9 +24,9 @@ router.post('/', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUser = {
             name: req.body.name,
-            userName: req.body.userName,
+            username: req.body.userName,
             password: hashedPassword,
-            userRole: req.body.userRole,
+            role: req.body.userRole,
         };
 
         await pool.query(

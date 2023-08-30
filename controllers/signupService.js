@@ -24,14 +24,14 @@ router.post('/', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUser = {
             name: req.body.name,
-            username: req.body.userName,
+            username: req.body.username,
             password: hashedPassword,
-            role: req.body.userRole,
+            role: req.body.role,
         };
 
         await pool.query(
             'insert into signup(name, username, password, role) values($1, $2, $3, $4) RETURNING *',
-            [newUser.name, newUser.userName, newUser.password, newUser.userRole],
+            [newUser.name, newUser.username, newUser.password, newUser.role],
             (error) => {
                 if (error) throw error;
 
